@@ -4,6 +4,7 @@ import SideBar from '@/shared/components/SideBar'
 import { ScrollArea } from '@/shared/components/ui/scroll-area'
 import { CustomAnimatedOutlet } from '@/shared/components/AnimatedOutlet'
 import BackToTopButton from '@/shared/components/BackToTopButton'
+import SiteFooter from '@/shared/components/SiteFooter'
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { useVersionStore } from '@/shared/store/versionStore'
 import { useSettingStore } from '@/shared/store/settingStore'
@@ -88,6 +89,7 @@ export default function MainLayout() {
                 <Suspense fallback={null}>
                   <UpdateModal />
                 </Suspense>
+                <SiteFooter />
               </ScrollArea>
               <BackToTopButton scrollRootSelector="[data-main-scroll-area]" />
             </div>

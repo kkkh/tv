@@ -1,0 +1,28 @@
+/**
+ * 备案栏贴底样式（仅新增，不改动任何既有样式）
+ *
+ * 目标：
+ * 1. 页面内容不足一屏时，备案栏贴在滚动区域底部，而不是悬在内容下方；
+ * 2. 页面内容超过一屏时，备案栏自然跟在页面内容之后，不覆盖、不遮挡内容。
+ *
+ * 实现说明：
+ * ScrollArea 的内部包裹层被工具类固定为 block，这里在 utilities 层用 :has()
+ * 精准命中「包含备案栏」的那一层，将其改为纵向 flex 并保证最小高度为满屏，
+ * 备案栏再用 margin-top: auto 贴底。任何不支持 :has() 的浏览器会自然降级为
+ * 正常的文档流布局，备案栏依然完整可见。
+ */
+@layer utilities {
+  [data-main-scroll-area] [data-slot='scroll-area-viewport'] > div:has(> [data-site-footer]) {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100% !important;
+    row-gap: 2rem !important;
+  }
+
+  [data-main-scroll-area]
+    [data-slot='scroll-area-viewport']
+    > div:has(> [data-site-footer])
+    > [data-site-footer] {
+    margin-top: auto !important;
+  }
+}
